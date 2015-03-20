@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>lib: Power.JS</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <link rel="stylesheet" href="css/bootstrap.css" />
+        <style>
+            #result {
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <article class="container">
+            <header class="text-center">
+                <h1 class="alert alert-info">lib: Power.JS</h1>
+            </header>
+
+            <section>
+                <input type="text" class="form-control" id="number" autofocus placeholder="Number" />
+                <br/>
+                <section class="text-center">
+                    <button class="btn btn-success" onclick="go()">Show Result</button>
+                </section>
+                <br/>
+                <h1 class="alert alert-success text-center" id="result"></h1>
+            </section>
+        </article>
+
+        <script>
+            var showResult = document.getElementById('result');
+            var num = document.getElementById('number');
+
+            function go() {
+                var reverseNum = [];
+                var weight = [];
+                var sum = [];
+                var count = 1;
+                var counter = 0;
+                var result = 0;
+                var list = num.value.split('');
+
+                for(var i = 1; i <= list.length; i++) {
+                    reverseNum.push(list[list.length - i]);
+                }
+
+                for(var el in reverseNum) {
+                    if(parseInt(el) === 0) {
+                        weight.push(count);
+                    } else {
+                        weight.push(weight[parseInt(el) - 1] * 2);
+                    }
+                }
+
+                for(var i = 0; i < reverseNum.length; i++) {
+                    if(parseInt(reverseNum[i]) === 1) {
+                        sum.push(parseInt(weight[i]));
+                        result += sum[counter];
+                        counter++;
+                    }
+                }
+
+                showResult.innerHTML = result.toString();
+                showResult.style.display = 'block';
+            }
+        </script>
+    </body>
+</html>
